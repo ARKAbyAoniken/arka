@@ -464,7 +464,7 @@ function Stocktake({ products, setProducts }: { products: Product[]; setProducts
                 </div>
                 <div className="flex items-center justify-end gap-2">
                   <button onClick={() => quickUpdate(item.id, -1)} className="h-11 w-11 rounded-xl border border-[#1a3a5c] text-[#1a3a5c]">-</button>
-                  <input type="number" value={item.realStock} onChange={(e) => updateQty(item.id, Number(e.target.value))} className="h-12 w-24 rounded-xl border border-[#E2E8F0] text-center font-black outline-none" />
+                  <input type="number" value={item.realStock} onFocus={(e) => e.target.select()} onChange={(e) => updateQty(item.id, Number(e.target.value))} className="h-12 w-24 rounded-xl border border-[#E2E8F0] text-center font-black outline-none" />
                   <button onClick={() => quickUpdate(item.id, 1)} className="h-11 w-11 rounded-xl bg-[#1a3a5c] text-white">+</button>
                 </div>
               </div>
