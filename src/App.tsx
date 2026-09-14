@@ -77,7 +77,6 @@ function Shell({ active, setActive, children }: { active: string; setActive: (k:
   return (
     <div className="min-h-screen bg-[#F7F8FA] text-[#2D3748]">
       <div className="flex min-h-screen">
-        {/* Sidebar desktop */}
         <aside className="hidden w-72 bg-[#1a3a5c] p-5 lg:block sticky top-0 h-screen overflow-y-auto">
           <ArkaLogo />
           <nav className="mt-10 grid gap-2">
@@ -94,7 +93,6 @@ function Shell({ active, setActive, children }: { active: string; setActive: (k:
           </nav>
         </aside>
 
-        {/* Mobile menu overlay */}
         {menuOpen && (
           <div className="fixed inset-0 z-50 lg:hidden">
             <div className="absolute inset-0 bg-black/50" onClick={() => setMenuOpen(false)} />
@@ -136,41 +134,6 @@ function Shell({ active, setActive, children }: { active: string; setActive: (k:
                   <h1 className="text-2xl font-black">ARKA</h1>
                   <p className="text-sm text-[#718096] hidden sm:block">Professional Kitchen Management System</p>
                 </div>
-              </div>
-              <button className="rounded-xl bg-[#1a3a5c] px-4 py-2 text-sm font-bold text-white">Close Week</button>
-            </div>
-          </header>
-          <section className="p-5">{children}</section>
-        </main>
-      </div>
-    </div>
-  );
-}
-  return (
-    <div className="min-h-screen bg-[#F7F8FA] text-[#2D3748]">
-      <div className="flex min-h-screen">
-        
-        <aside className="hidden w-72 bg-[#1a3a5c] p-5 lg:block sticky top-0 h-screen overflow-y-auto">
-          <ArkaLogo />
-          <nav className="mt-10 grid gap-2">
-            {modules.map((item) => {
-              const Icon = item.icon;
-              const selected = active === item.key;
-              return (
-                <button key={item.key} onClick={() => setActive(item.key)}
-                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${selected ? "bg-white text-[#1a3a5c]" : "text-white/75 hover:bg-white/10 hover:text-white"}`}>
-                  <Icon size={18} />{item.label}
-                </button>
-              );
-            })}
-          </nav>
-        </aside>
-        <main className="flex-1">
-          <header className="sticky top-0 z-40 border-b border-[#E2E8F0] bg-white px-5 py-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-2xl font-black">ARKA</h1>
-                <p className="text-sm text-[#718096]">Professional Kitchen Management System</p>
               </div>
               <button className="rounded-xl bg-[#1a3a5c] px-4 py-2 text-sm font-bold text-white">Close Week</button>
             </div>
