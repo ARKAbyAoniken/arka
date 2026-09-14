@@ -377,8 +377,8 @@ function Stocktake({ products, setProducts }: { products: Product[]; setProducts
             <div className="lg:col-span-2"><p className="mb-1 text-xs font-semibold text-[#718096]">NAME</p><input value={newProduct.name} onChange={(e) => setNewProduct(p => ({ ...p, name: e.target.value }))} placeholder="Product name" className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
             <div><p className="mb-1 text-xs font-semibold text-[#718096]">CATEGORY</p><select value={newProduct.category} onChange={(e) => setNewProduct(p => ({ ...p, category: e.target.value }))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none">{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select></div>
             <div><p className="mb-1 text-xs font-semibold text-[#718096]">UNIT</p><select value={newProduct.unit} onChange={(e) => setNewProduct(p => ({ ...p, unit: e.target.value }))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none">{UNITS.map(u => <option key={u}>{u}</option>)}</select></div>
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PRICE £</p><input type="number" value={newProduct.price} onChange={(e) => setNewProduct(p => ({ ...p, price: Number(e.target.value) }))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PAR</p><input type="number" value={newProduct.parLevel} onChange={(e) => setNewProduct(p => ({ ...p, parLevel: Number(e.target.value) }))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PRICE £</p><input type="number" onFocus={(e) => e.target.select()} value={newProduct.price} onChange={(e) => setNewProduct(p => ({ ...p, price: Number(e.target.value) }))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PAR</p><input type="number" onFocus={(e) => e.target.select()} value={newProduct.parLevel} onChange={(e) => setNewProduct(p => ({ ...p, parLevel: Number(e.target.value) }))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
           </div>
           <div className="mt-4 flex gap-3">
             <button onClick={addProduct} className="rounded-xl bg-[#1a3a5c] px-5 py-2 font-bold text-white">Save</button>
@@ -437,8 +437,8 @@ function Stocktake({ products, setProducts }: { products: Product[]; setProducts
                   <div className="lg:col-span-2"><p className="mb-1 text-xs font-semibold text-[#718096]">NAME</p><input value={item.name} onChange={(e) => updateField(item.id, "name", e.target.value)} className="h-10 w-full rounded-xl border border-[#1a3a5c] bg-white px-4 outline-none text-sm font-semibold" /></div>
                   <div><p className="mb-1 text-xs font-semibold text-[#718096]">CATEGORY</p><select value={item.category} onChange={(e) => updateField(item.id, "category", e.target.value)} className="h-10 w-full rounded-xl border border-[#1a3a5c] bg-white px-3 outline-none text-sm">{CATEGORIES.map(c => <option key={c}>{c}</option>)}</select></div>
                   <div><p className="mb-1 text-xs font-semibold text-[#718096]">UNIT</p><select value={item.unit} onChange={(e) => updateField(item.id, "unit", e.target.value)} className="h-10 w-full rounded-xl border border-[#1a3a5c] bg-white px-3 outline-none text-sm">{UNITS.map(u => <option key={u}>{u}</option>)}</select></div>
-                  <div><p className="mb-1 text-xs font-semibold text-[#718096]">PRICE £</p><input type="number" value={item.price} onChange={(e) => updateField(item.id, "price", Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#1a3a5c] bg-white px-3 outline-none text-sm" /></div>
-                  <div><p className="mb-1 text-xs font-semibold text-[#718096]">PAR</p><input type="number" value={item.parLevel} onChange={(e) => updateField(item.id, "parLevel", Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#1a3a5c] bg-white px-3 outline-none text-sm" /></div>
+                  <div><p className="mb-1 text-xs font-semibold text-[#718096]">PRICE £</p><input type="number" onFocus={(e) => e.target.select()} value={item.price} onChange={(e) => updateField(item.id, "price", Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#1a3a5c] bg-white px-3 outline-none text-sm" /></div>
+                  <div><p className="mb-1 text-xs font-semibold text-[#718096]">PAR</p><input type="number" onFocus={(e) => e.target.select()} value={item.parLevel} onChange={(e) => updateField(item.id, "parLevel", Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#1a3a5c] bg-white px-3 outline-none text-sm" /></div>
                 </div>
                 <div className="flex gap-3">
                   <button onClick={saveProduct} className="flex items-center gap-2 rounded-xl bg-[#1a3a5c] px-5 py-2 text-sm font-bold text-white"><Save size={14} /> Save changes</button>
@@ -464,7 +464,7 @@ function Stocktake({ products, setProducts }: { products: Product[]; setProducts
                 </div>
                 <div className="flex items-center justify-end gap-2">
                   <button onClick={() => quickUpdate(item.id, -1)} className="h-11 w-11 rounded-xl border border-[#1a3a5c] text-[#1a3a5c]">-</button>
-                  <input type="number" value={item.realStock} onFocus={(e) => e.target.select()} onChange={(e) => updateQty(item.id, Number(e.target.value))} className="h-12 w-24 rounded-xl border border-[#E2E8F0] text-center font-black outline-none" />
+                  <input type="number" onFocus={(e) => e.target.select()} value={item.realStock} onChange={(e) => updateQty(item.id, Number(e.target.value))} className="h-12 w-24 rounded-xl border border-[#E2E8F0] text-center font-black outline-none" />
                   <button onClick={() => quickUpdate(item.id, 1)} className="h-11 w-11 rounded-xl bg-[#1a3a5c] text-white">+</button>
                 </div>
               </div>
@@ -527,8 +527,8 @@ function Recipes({ products, recipes, setRecipes }: { products: Product[]; recip
           <div className="grid gap-3 md:grid-cols-4">
             <div><p className="mb-1 text-xs font-semibold text-[#718096]">NAME</p><input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Recipe name" className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
             <div><p className="mb-1 text-xs font-semibold text-[#718096]">CATEGORY</p><select value={newCat} onChange={(e) => setNewCat(e.target.value)} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none">{categories.map((c) => <option key={c}>{c}</option>)}</select></div>
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PORTIONS</p><input type="number" value={newPortions} onChange={(e) => setNewPortions(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PREP TIME (min)</p><input type="number" value={newPrepTime} onChange={(e) => setNewPrepTime(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PORTIONS</p><input type="number" onFocus={(e) => e.target.select()} value={newPortions} onChange={(e) => setNewPortions(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PREP TIME (min)</p><input type="number" onFocus={(e) => e.target.select()} value={newPrepTime} onChange={(e) => setNewPrepTime(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
           </div>
           <div className="mt-4 flex gap-3">
             <button onClick={addRecipe} className="rounded-xl bg-[#1a3a5c] px-5 py-2 font-bold text-white">Save</button>
@@ -600,7 +600,7 @@ function Recipes({ products, recipes, setRecipes }: { products: Product[]; recip
                       {products.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
                   </div>
-                  <div><p className="mb-1 text-xs font-semibold text-[#718096]">QTY</p><input type="number" value={newIngQty} onChange={(e) => setNewIngQty(Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" /></div>
+                  <div><p className="mb-1 text-xs font-semibold text-[#718096]">QTY</p><input type="number" onFocus={(e) => e.target.select()} value={newIngQty} onChange={(e) => setNewIngQty(Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" /></div>
                   <div><p className="mb-1 text-xs font-semibold text-[#718096]">UNIT</p>
                     <select value={newIngUnit} onChange={(e) => setNewIngUnit(e.target.value)} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm">
                       {["kg", "g", "l", "ml", "unit", "tbsp", "tsp"].map((u) => <option key={u}>{u}</option>)}
@@ -638,7 +638,7 @@ function Recipes({ products, recipes, setRecipes }: { products: Product[]; recip
                 </div>
                 <p className="mb-2 text-xs font-semibold text-[#718096]">PREP TIME</p>
                 <div className="flex items-center gap-3">
-                  <input type="number" value={selected.prepTime} onChange={(e) => updateSelected({ prepTime: Number(e.target.value) })} className="h-10 w-24 rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" />
+                  <input type="number" onFocus={(e) => e.target.select()} value={selected.prepTime} onChange={(e) => updateSelected({ prepTime: Number(e.target.value) })} className="h-10 w-24 rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" />
                   <span className="text-sm text-[#718096]">minutes</span>
                 </div>
               </Card>
@@ -689,7 +689,7 @@ function Production({ entries, setEntries, recipes }: { entries: ProductionEntry
                 {recipes.map((r) => <option key={r.id} value={r.id}>{r.name}</option>)}
               </select>
             </div>
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PORTIONS</p><input type="number" value={portions} onChange={(e) => setPortions(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">PORTIONS</p><input type="number" onFocus={(e) => e.target.select()} value={portions} onChange={(e) => setPortions(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
             <div><p className="mb-1 text-xs font-semibold text-[#718096]">NOTES</p><input value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Optional" className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
           </div>
           <div className="mt-4 flex gap-3">
@@ -794,11 +794,11 @@ function Waste({ products, entries, setEntries, productionEntries }: { products:
             </div>
             {wasteType === "product" && (
               <>
-                <div><p className="mb-1 text-xs font-semibold text-[#718096]">QUANTITY</p><input type="number" value={quantity} onChange={(e) => { setQuantity(Number(e.target.value)); const p = products.find(p => p.id === refId); if (p) setEstimatedCost(p.price * Number(e.target.value)); }} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
+                <div><p className="mb-1 text-xs font-semibold text-[#718096]">QUANTITY</p><input type="number" onFocus={(e) => e.target.select()} value={quantity} onChange={(e) => { setQuantity(Number(e.target.value)); const p = products.find(p => p.id === refId); if (p) setEstimatedCost(p.price * Number(e.target.value)); }} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
                 <div><p className="mb-1 text-xs font-semibold text-[#718096]">UNIT</p><select value={unit} onChange={(e) => setUnit(e.target.value)} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none">{UNITS.map(u => <option key={u}>{u}</option>)}</select></div>
               </>
             )}
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">ESTIMATED COST £</p><input type="number" value={estimatedCost} onChange={(e) => setEstimatedCost(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">ESTIMATED COST £</p><input type="number" onFocus={(e) => e.target.select()} value={estimatedCost} onChange={(e) => setEstimatedCost(Number(e.target.value))} className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
             <div className="lg:col-span-3"><p className="mb-1 text-xs font-semibold text-[#718096]">NOTES</p><input value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Optional details" className="h-11 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-4 outline-none" /></div>
           </div>
           <div className="mt-4 flex gap-3">
@@ -964,8 +964,8 @@ function Sales({ entries, setEntries }: { entries: SaleEntry[]; setEntries: Reac
           <div className="grid gap-2 md:grid-cols-5 items-end border-t border-[#E2E8F0] pt-4">
             <div className="md:col-span-2"><p className="mb-1 text-xs font-semibold text-[#718096]">ITEM NAME</p><input value={newItemName} onChange={(e) => setNewItemName(e.target.value)} placeholder="e.g. Ribeye 300g" className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" /></div>
             <div><p className="mb-1 text-xs font-semibold text-[#718096]">CATEGORY</p><select value={newItemCat} onChange={(e) => setNewItemCat(e.target.value)} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm">{SALE_CATEGORIES.map(c => <option key={c}>{c}</option>)}</select></div>
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">QTY</p><input type="number" value={newItemQty} onChange={(e) => setNewItemQty(Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" /></div>
-            <div><p className="mb-1 text-xs font-semibold text-[#718096]">UNIT PRICE £</p><input type="number" value={newItemPrice} onChange={(e) => setNewItemPrice(Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">QTY</p><input type="number" onFocus={(e) => e.target.select()} value={newItemQty} onChange={(e) => setNewItemQty(Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" /></div>
+            <div><p className="mb-1 text-xs font-semibold text-[#718096]">UNIT PRICE £</p><input type="number" onFocus={(e) => e.target.select()} value={newItemPrice} onChange={(e) => setNewItemPrice(Number(e.target.value))} className="h-10 w-full rounded-xl border border-[#E2E8F0] bg-[#F7F8FA] px-3 outline-none text-sm" /></div>
           </div>
           <div className="mt-3 flex gap-3">
             <button onClick={addItem} className="rounded-xl border border-[#1a3a5c] px-4 py-2 text-sm font-bold text-[#1a3a5c]"><Plus size={14} className="inline mr-1" />Add item</button>
