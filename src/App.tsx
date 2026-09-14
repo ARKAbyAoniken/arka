@@ -72,6 +72,80 @@ function ArkaLogo() {
 }
 
 function Shell({ active, setActive, children }: { active: string; setActive: (k: string) => void; children: React.ReactNode }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-[#F7F8FA] text-[#2D3748]">
+      <div className="flex min-h-screen">
+        {/* Sidebar desktop */}
+        <aside className="hidden w-72 bg-[#1a3a5c] p-5 lg:block sticky top-0 h-screen overflow-y-auto">
+          <ArkaLogo />
+          <nav className="mt-10 grid gap-2">
+            {modules.map((item) => {
+              const Icon = item.icon;
+              const selected = active === item.key;
+              return (
+                <button key={item.key} onClick={() => setActive(item.key)}
+                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${selected ? "bg-white text-[#1a3a5c]" : "text-white/75 hover:bg-white/10 hover:text-white"}`}>
+                  <Icon size={18} />{item.label}
+                </button>
+              );
+            })}
+          </nav>
+        </aside>
+
+        {/* Mobile menu overlay */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden">
+            <div className="absolute inset-0 bg-black/50" onClick={() => setMenuOpen(false)} />
+            <aside className="absolute left-0 top-0 h-full w-72 bg-[#1a3a5c] p-5 overflow-y-auto">
+              <div className="flex items-center justify-between mb-6">
+                <ArkaLogo />
+                <button onClick={() => setMenuOpen(false)} className="text-white/75 hover:text-white">
+                  <X size={24} />
+                </button>
+              </div>
+              <nav className="grid gap-2">
+                {modules.map((item) => {
+                  const Icon = item.icon;
+                  const selected = active === item.key;
+                  return (
+                    <button key={item.key} onClick={() => { setActive(item.key); setMenuOpen(false); }}
+                      className={`flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${selected ? "bg-white text-[#1a3a5c]" : "text-white/75 hover:bg-white/10 hover:text-white"}`}>
+                      <Icon size={18} />{item.label}
+                    </button>
+                  );
+                })}
+              </nav>
+            </aside>
+          </div>
+        )}
+
+        <main className="flex-1">
+          <header className="sticky top-0 z-40 border-b border-[#E2E8F0] bg-white px-5 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <button onClick={() => setMenuOpen(true)} className="lg:hidden rounded-xl bg-[#F7F8FA] p-2 text-[#1a3a5c]">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                  </svg>
+                </button>
+                <div>
+                  <h1 className="text-2xl font-black">ARKA</h1>
+                  <p className="text-sm text-[#718096] hidden sm:block">Professional Kitchen Management System</p>
+                </div>
+              </div>
+              <button className="rounded-xl bg-[#1a3a5c] px-4 py-2 text-sm font-bold text-white">Close Week</button>
+            </div>
+          </header>
+          <section className="p-5">{children}</section>
+        </main>
+      </div>
+    </div>
+  );
+}
   return (
     <div className="min-h-screen bg-[#F7F8FA] text-[#2D3748]">
       <div className="flex min-h-screen">
